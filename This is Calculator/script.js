@@ -12,7 +12,6 @@ window.onload = () => {
 buttonInput.forEach((buttonClass) => {
   buttonClass.addEventListener("click", () => {
     if (equalPressed === 1) {
-      // input.value = "";
       equalPressed = 0;
     }
     input.value += buttonClass.value;
@@ -36,24 +35,6 @@ equal.addEventListener("click", () => {
     alert(error.message);
   }
 });
-equal.addEventListener("click", () => {
-  equalPressed = 1;
-  let inputValue = input.value;
-  console.log(inputValue, "hvyutfv");
-  try {
-    let solution = eval(inputValue);
-    if (Number.isNaN(solution) || !Number.isFinite(solution)) {
-      throw new Error("Invalid mathematical expression");
-    }
-    if (Number.isInteger(solution)) {
-      input.value = solution;
-    } else {
-      input.value = solution.toFixed(2);
-    }
-  } catch (error) {
-    alert(error.message);
-  }
-});
 
 clear.addEventListener("click", () => {
   input.value = "";
@@ -61,4 +42,19 @@ clear.addEventListener("click", () => {
 
 erase.addEventListener("click", () => {
   input.value = input.value.substr(0, input.value.length - 1);
+});
+
+// Theme toggle functionality
+const calculator = document.querySelector('.calculator');
+const lightButton = document.querySelector('.light-button');
+const darkButton = document.querySelector('.dark-button');
+
+lightButton.addEventListener('click', () => {
+  calculator.classList.remove('dark-theme');
+  calculator.classList.add('light-theme');
+});
+
+darkButton.addEventListener('click', () => {
+  calculator.classList.remove('light-theme');
+  calculator.classList.add('dark-theme');
 });
